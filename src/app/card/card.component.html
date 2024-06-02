@@ -1,0 +1,9 @@
+<div class="card m-2" style="width: 18rem;" >
+    <img [src]="product.image" class="card-img-top" alt="..." style="height: 8rem; width: 8rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{product.title.slice(0,20)}}</h5>
+      <p class="card-text">{{product.description.slice(0,40)}}</p>
+      <h4>{{product.price | currency}}</h4>
+      <a href="#" class="btn btn-primary">Add to cart</a>
+    </div>
+  </div>

@@ -1,0 +1,10 @@
+<div class="container d-flex flex-wrap justify-content-center">
+
+    
+        @for (item of products$ | async; track $index) {
+
+            <app-card [product]="item"></app-card>
+        }
+   
+    
+</div>
