@@ -13,6 +13,7 @@ export class ProductApiService {
 
   getProduct(){
     return this.http.get<Iproduct[]>('https://fakestoreapi.com/products')
+    
     .pipe(
       map((products)=>{
         return products.map((product)=>{

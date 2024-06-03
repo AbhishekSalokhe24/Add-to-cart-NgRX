@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { CardComponent } from "../card/card.component";
 import { Iproduct } from '../models/product.interface';
 import { ProductApiService } from '../services/product-api.service';
+import { Store } from '@ngrx/store';
+import { addToCart } from '../States/Add Cart/addcart.action';
 
 @Component({
     selector: 'app-products',
@@ -15,18 +17,22 @@ import { ProductApiService } from '../services/product-api.service';
 })
 export class ProductsComponent implements OnInit{
   
-
-  http = inject(HttpClient);
-  products$ = this.http.get('https://fakestoreapi.com/products') as Observable<Iproduct[]>;
-
   prodAPI = inject(ProductApiService)
+  http = inject(HttpClient);
+  products$ = this.prodAPI.getProduct()  as Observable<Iproduct[]>;
+
+  
+
+  constructor(private store: Store<{cart: {products: Iproduct[]}}>){}
 
   ngOnInit(): void {
-    this.prodAPI.getProduct().subscribe((res)=>{
-      console.log(res)
-    })
+    // this.prodAPI.getProduct().subscribe((res)=>{
+    //   console.log("from products component...:",res)
+    // })
   }
-  
+  addItemToCart(product: Iproduct){
+    this.store.dispatch(addToCart({product}));
+  }
 
 
 }
